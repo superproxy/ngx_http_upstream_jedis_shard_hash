@@ -1,0 +1,118 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+RB_BLACK	rbtree.h	108;"	d
+RB_CLEAR_NODE	rbtree.h	168;"	d
+RB_EMPTY_NODE	rbtree.h	167;"	d
+RB_EMPTY_ROOT	rbtree.h	166;"	d
+RB_RED	rbtree.h	107;"	d
+RB_ROOT	rbtree.h	159;"	d
+SRAND	benchmark.c	12;"	d	file:
+TEST_SIZE	benchmark.c	10;"	d	file:
+_C99	rbtree.h	99;"	d
+_LINUX_RBTREE_H	rbtree.h	95;"	d
+_M64AA_H_	m64aa.h	2;"	d
+_POINTER_H_	pointer.h	2;"	d
+_RBTREE_CONTAINER_H_	rbtree_container.h	11;"	d
+_SHARD_H_	shard.h	2;"	d
+__rb_erase_color	rbtree.c	/^static void __rb_erase_color(struct rb_node *node, struct rb_node *parent,$/;"	f	file:
+__rb_rotate_left	rbtree.c	/^static void __rb_rotate_left(struct rb_node *node, struct rb_root *root)$/;"	f	file:
+__rb_rotate_right	rbtree.c	/^static void __rb_rotate_right(struct rb_node *node, struct rb_root *root)$/;"	f	file:
+age	pointer.h	/^	int age;$/;"	m	struct:__anon2
+compare	benchmark.c	/^int compare(void *key1, void *key2)$/;"	f
+compare	rbtree_container.h	/^	key_compare compare; \/\/key的比较函数$/;"	m	struct:__anon4
+container_of	rbtree.h	151;"	d
+data	rbtree_container.h	/^	unsigned char *data; \/\/指向值$/;"	m	struct:__anon3
+dlen	rbtree_container.h	/^	size_t dlen; \/\/data的长度$/;"	m	struct:__anon3
+itoa2	shard.c	/^char*  itoa2(int value, char* x) {$/;"	f
+key	rbtree_container.h	/^	void *key; \/\/指向键（键定长）$/;"	m	struct:__anon3
+key_compare	rbtree_container.h	/^typedef int (*key_compare)(void *key1, void *key2);$/;"	t
+klen	rbtree_container.h	/^	size_t klen; \/\/key的长度（定长key）$/;"	m	struct:__anon4
+main	array_fun.c	/^int main(void) {$/;"	f
+main	array_test.c	/^int main(void) {$/;"	f
+main	benchmark.c	/^int main(void)$/;"	f
+main	m64aa_test.c	/^int main(int argc, char **argv)$/;"	f
+main	pointer_test.c	/^int main(void) {$/;"	f
+main	shard_test.c	/^int main(void)$/;"	f
+main	test.c	/^int main(void) {$/;"	f
+murmurhash64aa	m64aa.c	/^murmurhash64aa ( const void * key, int len, int64_t seed )$/;"	f
+murmurhash64ac	m64aa.c	/^murmurhash64ac ( const void * key ) {$/;"	f
+name	pointer.h	/^	char * name;$/;"	m	struct:__anon2
+name	shard.h	/^     char *name;$/;"	m	struct:shard
+ngx_http_hello_world	ngx_http_hello_world_module.c	/^static char* ngx_http_hello_world(ngx_conf_t* cf, ngx_command_t* cmd, void* conf) {$/;"	f	file:
+ngx_http_hello_world_commands	ngx_http_hello_world_module.c	/^static ngx_command_t ngx_http_hello_world_commands[] = {$/;"	v	file:
+ngx_http_hello_world_create_loc_conf	ngx_http_hello_world_module.c	/^static void* ngx_http_hello_world_create_loc_conf(ngx_conf_t* cf) {$/;"	f	file:
+ngx_http_hello_world_handler	ngx_http_hello_world_module.c	/^static ngx_int_t ngx_http_hello_world_handler(ngx_http_request_t* r) {$/;"	f	file:
+ngx_http_hello_world_loc_conf_t	ngx_http_hello_world_module.c	/^} ngx_http_hello_world_loc_conf_t;$/;"	t	typeref:struct:__anon1	file:
+ngx_http_hello_world_merge_loc_conf	ngx_http_hello_world_module.c	/^static char* ngx_http_hello_world_merge_loc_conf(ngx_conf_t* cf, void* parent, void* child) {$/;"	f	file:
+ngx_http_hello_world_module	ngx_http_hello_world_module.c	/^ngx_module_t ngx_http_hello_world_module = {$/;"	v
+ngx_http_hello_world_module_ctx	ngx_http_hello_world_module.c	/^static ngx_http_module_t ngx_http_hello_world_module_ctx = {$/;"	v	file:
+node	pointer.h	/^}node;$/;"	t	typeref:struct:__anon2
+offsetof	rbtree.h	146;"	d
+output_words	ngx_http_hello_world_module.c	/^	ngx_str_t output_words;$/;"	m	struct:__anon1	file:
+rb_augment_erase_begin	rbtree.c	/^struct rb_node *rb_augment_erase_begin(struct rb_node *node)$/;"	f
+rb_augment_erase_end	rbtree.c	/^void rb_augment_erase_end(struct rb_node *node, rb_augment_f func, void *data)$/;"	f
+rb_augment_f	rbtree.h	/^typedef void (*rb_augment_f)(struct rb_node *node, void *data);$/;"	t
+rb_augment_insert	rbtree.c	/^void rb_augment_insert(struct rb_node *node, rb_augment_f func, void *data)$/;"	f
+rb_augment_path	rbtree.c	/^static void rb_augment_path(struct rb_node *node, rb_augment_f func, void *data)$/;"	f	file:
+rb_color	rbtree.h	121;"	d
+rb_entry	rbtree.h	161;"	d
+rb_entry	rbtree.h	163;"	d
+rb_erase	rbtree.c	/^void rb_erase(struct rb_node *node, struct rb_root *root)$/;"	f
+rb_first	rbtree.c	/^struct rb_node *rb_first(const struct rb_root *root)$/;"	f
+rb_init_node	rbtree.h	/^void rb_init_node(struct rb_node *rb)$/;"	f
+rb_insert_color	rbtree.c	/^void rb_insert_color(struct rb_node *node, struct rb_root *root)$/;"	f
+rb_is_black	rbtree.h	123;"	d
+rb_is_red	rbtree.h	122;"	d
+rb_last	rbtree.c	/^struct rb_node *rb_last(const struct rb_root *root)$/;"	f
+rb_left	rbtree.h	/^	struct rb_node *rb_left;$/;"	m	struct:rb_node	typeref:struct:rb_node::rb_node
+rb_link_node	rbtree.h	/^void rb_link_node(struct rb_node * node, struct rb_node * parent,$/;"	f
+rb_next	rbtree.c	/^struct rb_node *rb_next(const struct rb_node *node)$/;"	f
+rb_node	rbtree.h	/^	struct rb_node *rb_node;$/;"	m	struct:rb_root	typeref:struct:rb_root::rb_node
+rb_node	rbtree.h	/^struct rb_node$/;"	s
+rb_node	rbtree_container.h	/^	struct rb_node rb_node; \/\/rbtree内核结构（必须为首个字段）$/;"	m	struct:__anon3	typeref:struct:__anon3::rb_node
+rb_parent	rbtree.h	120;"	d
+rb_parent_color	rbtree.h	/^	unsigned long  rb_parent_color;$/;"	m	struct:rb_node
+rb_prev	rbtree.c	/^struct rb_node *rb_prev(const struct rb_node *node)$/;"	f
+rb_replace_node	rbtree.c	/^void rb_replace_node(struct rb_node *victim, struct rb_node *new,$/;"	f
+rb_right	rbtree.h	/^	struct rb_node *rb_right;$/;"	m	struct:rb_node	typeref:struct:rb_node::rb_node
+rb_root	rbtree.h	/^struct rb_root$/;"	s
+rb_set_black	rbtree.h	125;"	d
+rb_set_color	rbtree.h	/^void rb_set_color(struct rb_node *rb, int color)$/;"	f
+rb_set_parent	rbtree.h	/^void rb_set_parent(struct rb_node *rb, struct rb_node *p)$/;"	f
+rb_set_red	rbtree.h	124;"	d
+rbtree_container	rbtree_container.h	/^} rbtree_container; \/\/容器$/;"	t	typeref:struct:__anon4
+rbtree_container_abslowest	rbtree_container.c	/^rbtree_container_node *rbtree_container_abslowest(rbtree_container *tree, void *key)$/;"	f
+rbtree_container_delete	rbtree_container.c	/^rbtree_container_node *rbtree_container_delete(rbtree_container *tree, void *key)$/;"	f
+rbtree_container_erase	rbtree_container.c	/^void rbtree_container_erase(rbtree_container *tree, rbtree_container_node *cont)$/;"	f
+rbtree_container_first	rbtree_container.c	/^rbtree_container_node *rbtree_container_first(rbtree_container *tree)$/;"	f
+rbtree_container_init	rbtree_container.c	/^void rbtree_container_init(rbtree_container *tree, size_t key_length, key_compare key_compare_function)$/;"	f
+rbtree_container_insert	rbtree_container.c	/^int rbtree_container_insert(rbtree_container *tree, rbtree_container_node *cont)$/;"	f
+rbtree_container_last	rbtree_container.c	/^rbtree_container_node *rbtree_container_last(rbtree_container *tree)$/;"	f
+rbtree_container_next	rbtree_container.c	/^rbtree_container_node *rbtree_container_next(rbtree_container_node *cont)$/;"	f
+rbtree_container_node	rbtree_container.h	/^} rbtree_container_node; \/\/节点$/;"	t	typeref:struct:__anon3
+rbtree_container_node_array_malloc	rbtree_container.c	/^rbtree_container_node *rbtree_container_node_array_malloc(rbtree_container *tree,$/;"	f
+rbtree_container_node_free	rbtree_container.c	/^void rbtree_container_node_free(rbtree_container_node *tree_node)$/;"	f
+rbtree_container_node_malloc	rbtree_container.c	/^rbtree_container_node *rbtree_container_node_malloc(rbtree_container *tree, size_t data_length)$/;"	f
+rbtree_container_node_set_key	rbtree_container.h	32;"	d
+rbtree_container_prev	rbtree_container.c	/^rbtree_container_node *rbtree_container_prev(rbtree_container_node *cont)$/;"	f
+rbtree_container_replace	rbtree_container.c	/^rbtree_container_node *rbtree_container_replace(rbtree_container *tree, rbtree_container_node *cont)$/;"	f
+rbtree_container_search	rbtree_container.c	/^rbtree_container_node *rbtree_container_search(rbtree_container *tree, void *key)$/;"	f
+rbtree_container_sub	rbtree_container.c	/^rbtree_container_node *rbtree_container_sub(rbtree_container *tree, void *key)$/;"	f
+root	rbtree_container.h	/^	struct rb_root root; \/\/rbtree内核结构$/;"	m	struct:__anon4	typeref:struct:__anon4::rb_root
+select	pointer_test.c	/^char*  select(char* ss[], char* key) {$/;"	f
+select_node	pointer_test.c	/^node*  select_node(node* ss[], char* key) {$/;"	f
+select_node2	pointer_fun.c	/^node*  select_node2(node* ss[], char* key) {$/;"	f
+shard	shard.h	/^typedef struct shard {$/;"	s
+shard	shard.h	/^} shard;$/;"	t	typeref:struct:shard
+shard_compare	shard.c	/^int64_t shard_compare(void *x, void *y)$/;"	f
+shard_init	shard.c	/^void  shard_init(shard* shards[]) {$/;"	f
+shard_select	shard.c	/^shard* shard_select(shard* shards[],char* redis_key) {$/;"	f
+shard_select2	shard_test.c	/^shard*  shard_select2(shard*ss[], char *redis_key) {$/;"	f
+test	pointer_test.c	/^void test()$/;"	f
+test2	pointer_test.c	/^int test2(void) {$/;"	f
+tree	shard.c	/^rbtree_container tree;$/;"	v
+weight	shard.h	/^     int weight;$/;"	m	struct:shard
