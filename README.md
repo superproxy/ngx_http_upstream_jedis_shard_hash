@@ -15,8 +15,8 @@ location =/s {
 		shards[0].weight=1;
 		pshards[0]=ffi.cast("shard*",shards[0]);
 		ffi.C.shard_init(pshards);
-		local selected= ffi.C.shard_select(pshards,ffi.cast("char *","test"));                   i
-	    ngx.say(ffi.string(selected.name));
+		local selected= ffi.C.shard_select(pshards,ffi.cast("char *","test"));
+        ngx.say(ffi.string(selected.name));
 		ngx.say(selected.weight);
 		';          
 }           
