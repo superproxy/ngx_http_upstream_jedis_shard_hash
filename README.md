@@ -1,6 +1,11 @@
-### Nginx编译
+###  COMPILE WITH NGINX
 ./configure  --add-module=../ngx_http_upstream_jedisk_shard_hash
-### Lua集成
+### LUA USAGE
+
+##1. put shard.lua into the folder of your lua libs
+
+##2. config the file
+```
 location =/s {
                         default_type 'text/plain';
                         content_by_lua ' 
@@ -18,12 +23,14 @@ location =/s {
                 }           
 }
 
-
-### nginx使用
+```
+### NGINX USAGE
+```
 upstream {
 host1;
 host2;
 jedis_shad_hash;
 }
+``
 
 
