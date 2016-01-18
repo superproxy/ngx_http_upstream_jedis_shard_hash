@@ -1,8 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
-#include "m64aa.h"
 #include "tree_map.h"
+#include "m64aa.h"
 #include "shard.h"
 
  
@@ -36,7 +37,7 @@ shard* shard_select(shard_t* pshard_t,char* redis_key) {
 		printf(" no find %ld\n", pkey);
 		entry = tree_map_first(map);
 	}
-	// printf("select entry lkey %ld,hash:%s\n", *(int64_t*)entry->key, (char*)entry->value);
+	//printf("select entry lkey %ld,hash:%s\n", *(int64_t*)entry->key, (char*)entry->value);
 	int shard_size = pshard_t->shards_size; 
 	int i; 
 	for(i=0; i<shard_size;i++) {
@@ -49,9 +50,6 @@ shard* shard_select(shard_t* pshard_t,char* redis_key) {
 	}
 	return NULL;
 }
- 
-
-
 
 void  
 shard_init(shard_t* pshard_t, shard* shards [], int shard_size) {
@@ -61,8 +59,7 @@ shard_init(shard_t* pshard_t, shard* shards [], int shard_size) {
 	
 	pshard_t->shards = shards;
 	pshard_t->shards_size = shard_size;  
-	tree_map_entry *entry ; 
-   
+  
 	int i;
 	for(i=0; i<shard_size;i++) {
 		int weight = shards[i]->weight; 
@@ -77,15 +74,15 @@ shard_init(shard_t* pshard_t, shard* shards [], int shard_size) {
 			b[0] = '\0';
 			if(name!=NULL){ 
 				strcat(key,"SHARD-");
-				strcat(key, shard_itoa(i, &a));
+				strcat(key, shard_itoa(i, (char*)&a));
 				strcat(key,"-NODE-");
-				strcat(key, shard_itoa(n, &b));
+				strcat(key, shard_itoa(n, (char*)&b));
 			}
 			else {
 				strcat(key,name);
 				strcat(key,"*"); 
-				strcat(key, shard_itoa(weight, &a));
-				strcat(key, shard_itoa(n, &b));
+				strcat(key, shard_itoa(weight, (char*) &a));
+				strcat(key, shard_itoa(n, (char*) &b));
 			} 
 			int64_t lkey = murmurhash64ac(key); 
 			
@@ -97,10 +94,8 @@ shard_init(shard_t* pshard_t, shard* shards [], int shard_size) {
 			tree_map_put(pshard_t->tree_map, entry);
 			
 		}
-	}
-	return pshard_t;
-}
-
+	} 
+} 
 
 void  shard_free(shard_t*  pshard_t) { 
 	tree_map_free(pshard_t->tree_map);

@@ -1,10 +1,13 @@
 #include <stdio.h>
+#include <malloc.h> 
 #include "tree_map.h" 
+#include "tree.h"
+
 
 
  void tree_map_init(tree_map* tree_map, Comp* cmp)
 {
-	tree_map->tree =  (Red_black_tree*)malloc(sizeof(Red_black_tree)); //释放节点内部的
+	tree_map->tree =(Red_black_tree*)malloc(sizeof(Red_black_tree)); //释放节点内部的
 	rbtree_init(tree_map->tree, (Comp*) cmp);
 }
 

@@ -39,7 +39,7 @@ int main(int argc, char * argv [])
 
 		int i;
 	for (i = n - 1; i >= 0; --i)
-		rbtree_insert(&tree, (void*) i);
+		rbtree_insert(&tree, (void*)  i);
 
 	printf("n = %d, d = %d\n", n, rbtree_depth(&tree));
 

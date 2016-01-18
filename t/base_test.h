@@ -3,6 +3,7 @@
 
 #include <stdio.h>
 #include <stdint.h>
+#include <string.h>
 #include <ctype.h>
 #include <sys/types.h>
 #include "m64aa.h"
@@ -12,7 +13,7 @@
 #include "rbtree_container.h"
 #include "shard.h"
 
-#define   SHARD_TEST
+#define   TREE_TEST
 
 // #define   SHARD_TEST
 //#define   TREE_TEST 
