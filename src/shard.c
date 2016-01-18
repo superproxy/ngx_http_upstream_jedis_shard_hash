@@ -34,10 +34,10 @@ shard* shard_select(shard_t* pshard_t,char* redis_key) {
 	int64_t* pkey = &lredis_key;
 	tree_map_entry* entry  = tree_map_tail(map, pkey, (Comp*)shard_compare_int);
 	if (entry == NULL) {
-		printf(" no find %ld\n", pkey);
+		//printf(" no find %lld\n", pkey);
 		entry = tree_map_first(map);
 	}
-	//printf("select entry lkey %ld,hash:%s\n", *(int64_t*)entry->key, (char*)entry->value);
+	//printf("select entry lkey %lld,hash:%s\n", *(int64_t*)entry->key, (char*)entry->value);
 	int shard_size = pshard_t->shards_size; 
 	int i; 
 	for(i=0; i<shard_size;i++) {
@@ -90,7 +90,7 @@ shard_init(shard_t* pshard_t, shard* shards [], int shard_size) {
 			memcpy(entry->key, &lkey, sizeof(int64_t));
 			strcpy((char*)(entry->value), name);
 			
-			printf("lkey %ld,hash:%s\n", *(int64_t*)entry->key, (char*)entry->value);
+			//printf("lkey %lld,hash:%s\n", *(int64_t*)entry->key, (char*)entry->value);
 			tree_map_put(pshard_t->tree_map, entry);
 			
 		}
