@@ -29,7 +29,7 @@ char*  shard_itoa(int value, char* x) {
 
 shard* shard_select(shard_t* pshard_t,char* redis_key) {
 	shard** shards  = pshard_t->shards;
-	tree_map* map= pshard_t->tree_map;
+	tree_map* map = (tree_map*) pshard_t->tree_map ;
 	int64_t lredis_key = murmurhash64ac(redis_key);
 	int64_t* pkey = &lredis_key;
 	tree_map_entry* entry  = tree_map_tail(map, pkey, (Comp*)shard_compare_int);
@@ -53,8 +53,8 @@ shard* shard_select(shard_t* pshard_t,char* redis_key) {
 
 void  
 shard_init(shard_t* pshard_t, shard* shards [], int shard_size) {
-	tree_map*  _tree_map = (tree_map*)malloc(sizeof(tree_map));
-	pshard_t->tree_map = _tree_map;
+	tree_map*  map = (tree_map*)malloc(sizeof(tree_map));
+	pshard_t->tree_map = map;
 	tree_map_init(pshard_t->tree_map, (Comp*)shard_compare); 
 	
 	pshard_t->shards = shards;

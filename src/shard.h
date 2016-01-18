@@ -2,14 +2,13 @@
 #define _SHARD_H_
 
 #include "tree_map.h"
-
 typedef struct {
 	char *name;
 	int weight;
 } shard;
 
 typedef struct {
-	tree_map* tree_map;
+	void* tree_map;
 	shard** shards;
 	int shards_size;
 } shard_t;
