@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "tree_map.h"
 #include "m64aa.h"
+#include "tree_map.h"
 #include "shard.h"
 
  
@@ -103,6 +103,6 @@ shard_init(shard_t* pshard_t, shard* shards [], int shard_size) {
 
 
 void  shard_free(shard_t*  pshard_t) { 
-	treee_map_free(pshard_t->tree_map);
+	tree_map_free(pshard_t->tree_map);
 	free(pshard_t); 
 }
