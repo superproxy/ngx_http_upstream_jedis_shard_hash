@@ -6,13 +6,11 @@
 
 int main(int argc, char **argv)
 {
-    
     char *str = argv[1];
     printf("str:%s",str);
     int len = 0;
     printf("\n");
     while (str[++len]) {}
-    //long  hash = murmurhash64aa(str, len, 0x1234ABCD);
     long  hash = murmurhash64aa(str, len, 0x1234ABCD);
     printf("%d",sizeof(hash));
     printf("\n");

@@ -7,17 +7,9 @@
 int64_t
 murmurhash64aa ( const void * key, int len, int64_t seed )
 {
-       int64_t m = 0xc6a4a7935bd1e995;
-      //int64_t m = -4132994306676758123;
-      printf("\n");
-      printf("seed:%lld", seed);
-      printf("\n");
-      printf("m:%lld", m);
-      printf("\n");
+    int64_t m = 0xc6a4a7935bd1e995;
 	const int r = 47;
 	int64_t h = seed ^ (len * m);
-      printf("h:%ld", h);
-      printf("\n");
 	const int64_t * data = (const int64_t *)key;
 	const int64_t * end = data + (len/8);
 
@@ -26,15 +18,11 @@ murmurhash64aa ( const void * key, int len, int64_t seed )
 		int64_t k = *data++;
 
 		k *= m; 
-	        k ^= (0xffffffffffffffff&k) >> r;
+	    k ^= (0xffffffffffffffff&k) >> r;
 		k *= m; 
 		
 		h ^= k;
 		h *= m; 
-      printf("while K:%ld", k);
-      printf("\n");
-      printf("while h:%ld", h);
-      printf("\n");
 	}
 
 	const unsigned char * data2 = (const unsigned char*)data;
@@ -52,23 +40,12 @@ murmurhash64aa ( const void * key, int len, int64_t seed )
 	};
 
 
-      printf("last h:%ld", h);
-      printf("\n");
-      printf("last r:%ld", r);
-      printf("\n");
-       
 	//h ^= (0x0|h)>> r;
 	h ^= (0xffffffffffffffff&h) >> r;
-      printf("last h3:%ld", h);
-      printf("\n");
 	h *= m;
-      printf("last h2:%ld", h);
-      printf("\n");
         
 //	h ^= (0x0|h) >> r;
 	h ^= (0xffffffffffffffff&h) >> r;
-      printf("last h1:%ld", h);
-      printf("\n");
 	return h;
 } 
 int64_t

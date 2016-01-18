@@ -1,21 +1,24 @@
 #include <stdio.h>
-#include <string.h>
 #include <stdlib.h>
 
-#include "rbtree_container.h"
+#include "tree_map.h"
 #include "m64aa.h"
 #include "shard.h"
 
-
-rbtree_container tree;
-//int64_t shard_compare(void *x, void *y)
-void* shard_compare(void *x, void *y)
-{
-	// return (x < y) ? -1 : ((x == y) ? 0 : 1)
-	return (void *) ( *((int64_t*)x) - *((int64_t*)y)); 
+ 
+int shard_compare_int(void *x, void *y)
+{ 
+	return  (*((int64_t*)x) < *((int64_t*)y)) ? -1 : (*((int64_t*)x) == (*((int64_t*)y)) ? 0 : 1);
 }
 
-char*  itoa2(int value, char* x) {
+int shard_compare(void *x, void *y)
+{ 
+	tree_map_entry* entryX = (tree_map_entry*)x;
+	tree_map_entry* entryY = (tree_map_entry*)y; 
+	return (*((int64_t*)entryX->key) < *((int64_t*)entryY->key)) ? -1 : (*((int64_t*)entryX->key) == ( *((int64_t*)entryY->key)) ? 0 : 1);
+}
+
+char*  shard_itoa(int value, char* x) {
 	if(x==NULL)
 		return NULL;
 	sprintf(x,"%d",value);
@@ -23,75 +26,83 @@ char*  itoa2(int value, char* x) {
 }
 
 
-shard* shard_select(shard* shards[],char* redis_key) {
+shard* shard_select(shard_t* pshard_t,char* redis_key) {
+	shard** shards  = pshard_t->shards;
+	tree_map* map= pshard_t->tree_map;
 	int64_t lredis_key = murmurhash64ac(redis_key);
-	int64_t * pkey = &lredis_key;
-	rbtree_container_node *pc  = rbtree_container_abslowest(&tree, pkey);
-	if (pc == NULL) {
-	//	printf("  no find %ld\n", pkey);
-		pc =rbtree_container_first(&tree);
+	int64_t* pkey = &lredis_key;
+	tree_map_entry* entry  = tree_map_tail(map, pkey, (Comp*)shard_compare_int);
+	if (entry == NULL) {
+		printf(" no find %ld\n", pkey);
+		entry = tree_map_first(map);
 	}
-//	printf("  key %ld pc data: %s\n", *pkey, (char*)(pc->data));
-	int shard_size = sizeof(*shards)/sizeof(shards[0]);
-	int i;
+	// printf("select entry lkey %ld,hash:%s\n", *(int64_t*)entry->key, (char*)entry->value);
+	int shard_size = pshard_t->shards_size; 
+	int i; 
 	for(i=0; i<shard_size;i++) {
-		char* name = (char *)pc->data;
+        char* name = (char *)entry->value; 
 		if(strcmp(name,shards[i]->name)==0) { 
 			shard* x= shards[i];
-//			printf("selected shard %s,weight:%d",x->name,x->weight);
-			//return shards[i];
+			// printf("selected shard %s,weight:%d\n",x->name,x->weight);
 			return x;
 		}
 	}
 	return NULL;
 }
+ 
 
-void  shard_init(shard* shards[]) {
-	rbtree_container_init(&tree, sizeof(int64_t), shard_compare);
-	rbtree_container_node *pc ;
 
-	//int shard_size = strlen(shards);
-	//	printf("sizeof shards%d\n", sizeof(*shards));
-//	printf("sizeof shard[0]%d\n", sizeof(shards[0]));
-	int shard_size = sizeof(*shards)/sizeof(shards[0]);
-	//printf("shard_size%d\n", shard_size);
+
+void  
+shard_init(shard_t* pshard_t, shard* shards [], int shard_size) {
+	tree_map*  _tree_map = (tree_map*)malloc(sizeof(tree_map));
+	pshard_t->tree_map = _tree_map;
+	tree_map_init(pshard_t->tree_map, (Comp*)shard_compare); 
+	
+	pshard_t->shards = shards;
+	pshard_t->shards_size = shard_size;  
+	tree_map_entry *entry ; 
+   
 	int i;
 	for(i=0; i<shard_size;i++) {
-		int weight = shards[i]->weight;
-//		printf("weight%d\n", weight);
+		int weight = shards[i]->weight; 
 		int n;
 		for(n=0; n< 160*weight;n++) {
-			char* name = shards[i]->name;
-			printf("name:%s\n", name);
-			char* key=(char*)malloc(sizeof(char)*50);
-			if(name!=NULL){
-				printf("in\n");
-//				//sprintf(key,"%s%d%s%d","SHARD-",i,"-NODE-",n);
-				char a[10];
-				char b[10];
+			char* name = shards[i]->name; 
+			char  key[50]; 
+			char a[10];
+			char b[10];
+			key[0] = '\0';
+			a[0] = '\0';
+			b[0] = '\0';
+			if(name!=NULL){ 
 				strcat(key,"SHARD-");
-				strcat(key,itoa2(i,&a));
+				strcat(key, shard_itoa(i, &a));
 				strcat(key,"-NODE-");
-				strcat(key,itoa2(n,&b));
+				strcat(key, shard_itoa(n, &b));
 			}
 			else {
-//				printf("else\n");
-				//sprintf(key,"%s%s%d%d", name, "*", weight,n);
 				strcat(key,name);
-				strcat(key,"*");
-				char a[10];
-				char b[10];
-				strcat(key,itoa2(weight,&a));
-				strcat(key,itoa2(n,&b));
-			}
-
-			//key="hello";
-			int64_t lkey = murmurhash64ac(key);
-//			printf("hash:%s,lkey %ld",key,lkey);
-			pc = rbtree_container_node_malloc(&tree, sizeof(name));
-			rbtree_container_node_set_key(pc, int64_t, lkey); 
-			strcpy((char*)(pc->data), name);
-			rbtree_container_insert(&tree, pc);
+				strcat(key,"*"); 
+				strcat(key, shard_itoa(weight, &a));
+				strcat(key, shard_itoa(n, &b));
+			} 
+			int64_t lkey = murmurhash64ac(key); 
+			
+			tree_map_entry* entry = tree_map_entry_new(sizeof(int64_t), sizeof(name));
+			memcpy(entry->key, &lkey, sizeof(int64_t));
+			strcpy((char*)(entry->value), name);
+			
+			printf("lkey %ld,hash:%s\n", *(int64_t*)entry->key, (char*)entry->value);
+			tree_map_put(pshard_t->tree_map, entry);
+			
 		}
 	}
+	return pshard_t;
+}
+
+
+void  shard_free(shard_t*  pshard_t) { 
+	treee_map_free(pshard_t->tree_map);
+	free(pshard_t); 
 }
