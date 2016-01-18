@@ -1,6 +1,5 @@
+#include <stdio.h>
 #include "tree_map.h" 
-#include "tree.h"
-#include "stdio.h"
 
 
  void tree_map_init(tree_map* tree_map, Comp* cmp)

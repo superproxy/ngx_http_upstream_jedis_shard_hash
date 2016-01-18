@@ -1,7 +1,6 @@
 #ifndef _SHARD_H_
 #define _SHARD_H_
 
-#include "rbtree_container.h"
 #include "tree_map.h"
 typedef struct {
 	char *name;
