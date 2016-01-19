@@ -1,4 +1,4 @@
-ngx_addon_name=ngx_http_hello_world_module
-HTTP_MODULES="$HTTP_MODULES ngx_http_hello_world_module"
-NGX_ADDON_SRCS="$NGX_ADDON_SRCS $ngx_addon_dir/src/ngx_http_hello_world_module.c $ngx_addon_dir/src/shard.c $ngx_addon_dir/src/tree.c $ngx_addon_dir/src/tree_map.c $ngx_addon_dir/src/m64aa.c"
+ngx_addon_name=ngx_http_upstream_jedis_shard_hash
+HTTP_MODULES="$HTTP_MODULES ngx_http_upstream_jedis_shard_hash"
+NGX_ADDON_SRCS="$NGX_ADDON_SRCS $ngx_addon_dir/src/ngx_http_upstream_jedis_shard_hash.c $ngx_addon_dir/src/shard.c $ngx_addon_dir/src/tree.c $ngx_addon_dir/src/tree_map.c $ngx_addon_dir/src/m64aa.c"
 NGX_ADDON_DEPS="$NGX_ADDON_DEPS $ngx_addon_dir/src/m64aa.h $ngx_addon_dir/src/tree.h $ngx_addon_dir/src/tree_map.c $ngx_addon_dir/src/shard.h"
